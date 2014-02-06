@@ -3,34 +3,21 @@ package edu.fsu.cs.mobile.example.dialog4;
 import java.util.Calendar;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
 public class DatePickerDialogExample extends Activity {
+	
+	private final String DIALOG_TAG = "DATEPICKER_DIALOG";
     
 	private TextView mDateDisplay;
     private Button mPickDate;
-    private int mYear;
-    private int mMonth;
-    private int mDay;
     
-    // mDateSetListener is used in onCreateDialog()
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-
-                public void onDateSet(DatePicker view, int year, 
-                                      int monthOfYear, int dayOfMonth) {
-                    mYear = year;
-                    mMonth = monthOfYear;
-                    mDay = dayOfMonth;
-                    updateDisplay();
-                }
-            };
+    private int year;
+    private int month;
+    private int day;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,32 +30,23 @@ public class DatePickerDialogExample extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-
-				showDialog(0);
-				
+				DatePickerDialogFragment.newInstance().show(getFragmentManager(), DIALOG_TAG);
 			}
 		});
         
         // get the current date
         Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
 
         // display the current date (this method is below)
         // this call initializes the date when the Activity is first created
-        updateDisplay();
-
+        updateDisplay(month, day, year);
     }
     
     // updates the date in the TextView
-    private void updateDisplay() {
-        mDateDisplay.setText((mMonth + 1) + "/" + mDay + "/" + mYear);
-    }
-    
-    @Override
-    public Dialog onCreateDialog(int id) {
-    
-    	return new DatePickerDialog(this, mDateSetListener, mYear, mMonth, mDay);
+    public void updateDisplay(int mMonth, int mDay, int mYear) {
+        mDateDisplay.setText(mMonth + "/" + mDay + "/" + mYear);
     }
 }

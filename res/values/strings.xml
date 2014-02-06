@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, DatePickerDialogExampleActivity!</string>
     <string name="app_name">DatePickerDialogExample</string>
+    <string name="choose_date">Choose a Date</string>
+    <string name="no_selection">No Date Selected</string>
 
 </resources>

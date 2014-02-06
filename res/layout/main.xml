@@ -12,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="39dp"
-        android:text="Choose a Date" />
+        android:text="@string/choose_date" />
 
     <TextView
         android:id="@+id/textView1"
@@ -21,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
-        android:text="No Date Selected"
+        android:text="@string/no_selection"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
